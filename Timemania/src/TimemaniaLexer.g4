@@ -1,6 +1,7 @@
 lexer grammar TimemaniaLexer;
 
 // Definição de tokens para palavras-chave
+VASCO: 'vasco';
 FLAMENGO: 'flamengo';
 CORINTHIANS: 'corinthians';
 PALMEIRAS: 'palmeiras';
