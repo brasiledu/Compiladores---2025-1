@@ -1,4 +1,4 @@
-from antlr4 import *
+from antlr4 import * 
 from TimemaniaLexer import TimemaniaLexer
 from TimemaniaParser import TimemaniaParser
 
@@ -81,18 +81,31 @@ class TimemaniaVisitor(ParseTreeVisitor):
         for comando in ctx.comando():
             self.visit(comando)
 
+    def visitFutebol(self, ctx):
+        if ctx.VASCO():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Vasco é o time da virada! Mensagem: {texto}")
+        elif ctx.FLAMENGO():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Flamengo: {texto}")
+        elif ctx.CORINTHIANS():
+            numero = ctx.NUMBER().getText()
+            print(f"Corinthians número: {numero}")
+        elif ctx.PALMEIRAS():
+            print("Palmeiras não tem mundial 🏆🚫")
+        elif ctx.SANTOS():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Santos: {texto}")
+
 def main():
-    # Lê o arquivo Timemania
-    with open("triangulo_pascal.tm") as f:
+    with open("teste_vasco.tm") as f:
         input_stream = InputStream(f.read())
 
-    # Analisa o código
     lexer = TimemaniaLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = TimemaniaParser(stream)
     tree = parser.programa()
 
-    # Executa o código
     visitor = TimemaniaVisitor()
     visitor.visit(tree)
 
