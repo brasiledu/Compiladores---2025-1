@@ -1,6 +1,6 @@
 lexer grammar TimemaniaLexer;
 
-// Definição de tokens para palavras-chave
+// Palavras-chave da linguagem
 FLAMENGO: 'flamengo';
 CORINTHIANS: 'corinthians';
 PALMEIRAS: 'palmeiras';
@@ -14,16 +14,44 @@ ENQUANTO: 'enquanto';
 FACA: 'faca';
 ESCREVA: 'escreva';
 LEIA: 'leia';
-
-// Tokens para outros elementos
-NUMBER: [0-9]+;
-ID: [a-zA-Z_][a-zA-Z0-9_]*;
-STRING: '"' .*? '"';
-ASSIGN: ':=';
+VASCO: 'vasco';
+// Operadores aritméticos
+PLUS: '+' ;
+MINUS: '-';
+MULT: '*';
+DIV: '/';
+MOD: '%';
+OPERATOR: [+*/-];
 DELIMITER: [;,];
-OPERATOR: [+\-*/];
-PARENTESE: [()];
-CHAVE: [{}];
 
-// Ignorar espaços em branco
+// Operadores relacionais
+LESS: '<';
+LESSEQ: '<=';
+GREATER: '>';
+GREATEREQ: '>=';
+EQUAL: '==';
+NOTEQUAL: '!=';
+
+// Operadores lógicos
+AND: '&&';
+OR: '||';
+NOT: '!';
+
+// Símbolos especiais
+ASSIGN: ':=';
+SEMICOLON: ';';
+COMMA: ',';
+LPAREN: '(';
+RPAREN: ')';
+LBRACE: '{';
+RBRACE: '}';
+
+// Literais e identificadores
+NUMBER: [0-9]+ ('.' [0-9]+)?;  // Suporte para números decimais
+ID: [a-zA-Z_][a-zA-Z0-9_]*;
+STRING: '"' (~["\r\n] | '\\"')* '"';  // Melhor tratamento para strings com escape
+
+// Ignorando espaços em branco e comentários
+COMMENT: '//' ~[\r\n]* -> skip;
+MULTILINE_COMMENT: '/*' .*? '*/' -> skip;  // Suporte para comentários multilinhas
 WS: [ \t\r\n]+ -> skip;

@@ -5,7 +5,7 @@ import sys
 if sys.version_info[1] > 5:
     from typing import TextIO
 else:
-    from typing.io import TextIO
+    from typing import TextIO
 
 
 def serializedATN():
@@ -101,23 +101,24 @@ class TimemaniaLexer(Lexer):
     PARENTESE = 20
     CHAVE = 21
     WS = 22
+    VASCO = 23
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
 
     modeNames = [ "DEFAULT_MODE" ]
 
     literalNames = [ "<INVALID>",
-            "'flamengo'", "'corinthians'", "'palmeiras'", "'santos'", "'start'", 
+            "'flamengo'", "'corinthians'", "'vasco'", "'palmeiras'", "'santos'", "'start'", 
             "'end'", "'se'", "'entao'", "'senao'", "'enquanto'", "'faca'", 
             "'escreva'", "'leia'", "':='" ]
 
     symbolicNames = [ "<INVALID>",
-            "FLAMENGO", "CORINTHIANS", "PALMEIRAS", "SANTOS", "START", "END", 
+            "FLAMENGO", "CORINTHIANS","VASCO", "PALMEIRAS", "SANTOS", "START", "END", 
             "SE", "ENTAO", "SENAO", "ENQUANTO", "FACA", "ESCREVA", "LEIA", 
             "NUMBER", "ID", "STRING", "ASSIGN", "DELIMITER", "OPERATOR", 
             "PARENTESE", "CHAVE", "WS" ]
 
-    ruleNames = [ "FLAMENGO", "CORINTHIANS", "PALMEIRAS", "SANTOS", "START", 
+    ruleNames = [ "FLAMENGO", "CORINTHIANS", "VASCO", "PALMEIRAS", "SANTOS", "START", 
                   "END", "SE", "ENTAO", "SENAO", "ENQUANTO", "FACA", "ESCREVA", 
                   "LEIA", "NUMBER", "ID", "STRING", "ASSIGN", "DELIMITER", 
                   "OPERATOR", "PARENTESE", "CHAVE", "WS" ]

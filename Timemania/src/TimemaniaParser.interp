@@ -2,6 +2,7 @@ token literal names:
 null
 'flamengo'
 'corinthians'
+'vasco'
 'palmeiras'
 'santos'
 'start'
@@ -27,6 +28,7 @@ token symbolic names:
 null
 FLAMENGO
 CORINTHIANS
+VASCO
 PALMEIRAS
 SANTOS
 START

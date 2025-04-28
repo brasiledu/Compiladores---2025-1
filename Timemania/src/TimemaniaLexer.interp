@@ -13,6 +13,7 @@ null
 'faca'
 'escreva'
 'leia'
+'vasco'
 null
 null
 null
@@ -27,6 +28,7 @@ token symbolic names:
 null
 FLAMENGO
 CORINTHIANS
+VASCO
 PALMEIRAS
 SANTOS
 START
@@ -51,6 +53,7 @@ WS
 rule names:
 FLAMENGO
 CORINTHIANS
+VASCO
 PALMEIRAS
 SANTOS
 START

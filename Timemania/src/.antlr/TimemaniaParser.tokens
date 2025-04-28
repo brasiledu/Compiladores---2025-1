@@ -20,6 +20,7 @@ OPERATOR=19
 PARENTESE=20
 CHAVE=21
 WS=22
+VASCO=23
 'flamengo'=1
 'corinthians'=2
 'palmeiras'=3
@@ -34,3 +35,4 @@ WS=22
 'escreva'=12
 'leia'=13
 ':='=17
+'vasco'=23

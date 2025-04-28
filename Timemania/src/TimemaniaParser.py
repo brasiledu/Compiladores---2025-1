@@ -6,7 +6,7 @@ import sys
 if sys.version_info[1] > 5:
 	from typing import TextIO
 else:
-	from typing.io import TextIO
+	from typing import TextIO
 
 def serializedATN():
     return [
@@ -61,12 +61,12 @@ class TimemaniaParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'flamengo'", "'corinthians'", "'palmeiras'", 
+    literalNames = [ "<INVALID>", "'flamengo'", "'corinthians'", "'vasco'", "'palmeiras'", 
                      "'santos'", "'start'", "'end'", "'se'", "'entao'", 
                      "'senao'", "'enquanto'", "'faca'", "'escreva'", "'leia'", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "':='" ]
 
-    symbolicNames = [ "<INVALID>", "FLAMENGO", "CORINTHIANS", "PALMEIRAS", 
+    symbolicNames = [ "<INVALID>", "FLAMENGO", "CORINTHIANS", "VASCO", "PALMEIRAS", 
                       "SANTOS", "START", "END", "SE", "ENTAO", "SENAO", 
                       "ENQUANTO", "FACA", "ESCREVA", "LEIA", "NUMBER", "ID", 
                       "STRING", "ASSIGN", "DELIMITER", "OPERATOR", "PARENTESE", 
@@ -109,6 +109,7 @@ class TimemaniaParser ( Parser ):
     PARENTESE=20
     CHAVE=21
     WS=22
+    VASCO=23
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
