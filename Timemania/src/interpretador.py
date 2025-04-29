@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import sys
 import os
 from antlr4 import *
+=======
+from antlr4 import * 
+>>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
 from TimemaniaLexer import TimemaniaLexer
 from TimemaniaParser import TimemaniaParser
 
@@ -577,7 +581,24 @@ class TimemaniaInterpreter:
                     
         return False
 
+    def visitFutebol(self, ctx):
+        if ctx.VASCO():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Vasco é o time da virada! Mensagem: {texto}")
+        elif ctx.FLAMENGO():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Flamengo: {texto}")
+        elif ctx.CORINTHIANS():
+            numero = ctx.NUMBER().getText()
+            print(f"Corinthians número: {numero}")
+        elif ctx.PALMEIRAS():
+            print("Palmeiras não tem mundial 🏆🚫")
+        elif ctx.SANTOS():
+            texto = ctx.STRING().getText().strip('"')
+            print(f"Santos: {texto}")
+
 def main():
+<<<<<<< HEAD
     if len(sys.argv) > 1:
         file_path = sys.argv[1]
     else:
@@ -596,6 +617,18 @@ def main():
     interpreter = TimemaniaInterpreter()
     print(f"Executando programa Timemania: {file_path}")
     interpreter.run(file_path)
+=======
+    with open("teste_vasco.tm") as f:
+        input_stream = InputStream(f.read())
+
+    lexer = TimemaniaLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = TimemaniaParser(stream)
+    tree = parser.programa()
+
+    visitor = TimemaniaVisitor()
+    visitor.visit(tree)
+>>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
 
 if __name__ == "__main__":
     main()

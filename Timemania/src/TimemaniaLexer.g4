@@ -1,6 +1,11 @@
 lexer grammar TimemaniaLexer;
 
+<<<<<<< HEAD
 // Palavras-chave da linguagem
+=======
+// Definição de tokens para palavras-chave
+VASCO: 'vasco';
+>>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
 FLAMENGO: 'flamengo';
 CORINTHIANS: 'corinthians';
 PALMEIRAS: 'palmeiras';
@@ -27,6 +32,7 @@ PARENTESE: [()]; // Parênteses
 COMPARADOR: '>' | '<' | '==' | '!=' | '<=' | '>='; // Comparadores
 CHAVE: '{' | '}'; // Chaves
 
+<<<<<<< HEAD
 
 // Operadores lógicos
 AND: '&&';
@@ -47,3 +53,7 @@ STRING: '"' (~["\r\n] | '\\"')* '"';  // Melhor tratamento para strings com esca
 COMMENT: '//' ~[\r\n]* -> skip;
 MULTILINE_COMMENT: '/*' .*? '*/' -> skip;  // Suporte para comentários multilinhas
 WS: [ \t\r\n]+ -> skip;
+=======
+// Ignorar espaços em branco
+WS: [ \t\r\n]+ -> skip;
+>>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
