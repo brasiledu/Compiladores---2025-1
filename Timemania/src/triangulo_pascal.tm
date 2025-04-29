@@ -2,7 +2,7 @@ start
     // Calculadora básica para demonstrar o Timemania
     
     // Exibe mensagem de boas-vindas
-    msg := "Bem-vindo à Calculadora Timemania!"
+    msg := "Bem-vindo à Calculadora Timemania!";
     escreva(msg);
     
     // Solicita um número ao usuário
@@ -21,10 +21,11 @@ start
     escreva(quadrado);
     
     // Estrutura condicional para verificar se é par ou ímpar
-    resto = numero % 2;
-    zero = resto == 0;
+    resto := numero % 2;
     
-    se zero entao {
+    zero := 4;
+
+    se (zero < 1)entao{
         escreva("O número é par");
     } senao {
         escreva("O número é ímpar");
@@ -32,4 +33,5 @@ start
     
     // Comando temático para finalizar
     flamengo("Cálculos realizados com sucesso!");
-end
+    vasco("pau no rabo do mengo");
+end;
