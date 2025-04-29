@@ -98,5 +98,14 @@ class TimemaniaParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TimemaniaParser#comparacao.
+    def enterComparacao(self, ctx:TimemaniaParser.ComparacaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#comparacao.
+    def exitComparacao(self, ctx:TimemaniaParser.ComparacaoContext):
+        pass
+
+
 
 del TimemaniaParser

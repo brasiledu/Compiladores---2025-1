@@ -23,14 +23,10 @@ DIV: '/';
 MOD: '%';
 OPERATOR: [+*/-];
 DELIMITER: [;,];
+PARENTESE: [()]; // Parênteses
+COMPARADOR: '>' | '<' | '==' | '!=' | '<=' | '>='; // Comparadores
+CHAVE: '{' | '}'; // Chaves
 
-// Operadores relacionais
-LESS: '<';
-LESSEQ: '<=';
-GREATER: '>';
-GREATEREQ: '>=';
-EQUAL: '==';
-NOTEQUAL: '!=';
 
 // Operadores lógicos
 AND: '&&';
@@ -41,10 +37,6 @@ NOT: '!';
 ASSIGN: ':=';
 SEMICOLON: ';';
 COMMA: ',';
-LPAREN: '(';
-RPAREN: ')';
-LBRACE: '{';
-RBRACE: '}';
 
 // Literais e identificadores
 NUMBER: [0-9]+ ('.' [0-9]+)?;  // Suporte para números decimais

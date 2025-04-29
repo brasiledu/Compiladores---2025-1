@@ -1,9 +1,9 @@
 start
-  escreva("Digite o numero de linhas do Triangulo de Pascal: ");
+  escreva("Digite o número de linhas do Triângulo de Pascal: ");
   leia(n);
   
   se (n < 1) entao {
-    escreva("ERRO: O numero deve ser maior ou igual a 1");
+    escreva("ERRO: O número deve ser maior ou igual a 1");
   }
   senao {
     linha := 1;
@@ -18,9 +18,7 @@ start
         escreva(valor);
         
         // Calcula o próximo valor usando a fórmula combinatória
-        // C(n,k+1) = C(n,k) * (n-k) / (k+1)
-        novoValor := valor * (linha - coluna - 1) / (coluna + 1);
-        valor := novoValor;
+        valor := valor * (linha - coluna - 1) / (coluna + 1);
         coluna := coluna + 1;
       }
       

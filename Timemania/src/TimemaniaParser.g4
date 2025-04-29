@@ -32,3 +32,6 @@ expressao: termo (OPERATOR termo)*;
 termo: NUMBER | ID | PARENTESE expressao PARENTESE;
 
 condicao: expressao (OPERATOR expressao)? ;
+
+// Dentro de TimemaniaParser.g4
+comparacao: expressao (COMPARADOR expressao)? ; // Use o novo token COMPARADOR aqui!
