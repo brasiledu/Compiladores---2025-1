@@ -17,6 +17,132 @@ class TimemaniaParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TimemaniaParser#declaracao.
+    def enterDeclaracao(self, ctx:TimemaniaParser.DeclaracaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#declaracao.
+    def exitDeclaracao(self, ctx:TimemaniaParser.DeclaracaoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#constante.
+    def enterConstante(self, ctx:TimemaniaParser.ConstanteContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#constante.
+    def exitConstante(self, ctx:TimemaniaParser.ConstanteContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#tipagem.
+    def enterTipagem(self, ctx:TimemaniaParser.TipagemContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#tipagem.
+    def exitTipagem(self, ctx:TimemaniaParser.TipagemContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#tipoDefinicao.
+    def enterTipoDefinicao(self, ctx:TimemaniaParser.TipoDefinicaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#tipoDefinicao.
+    def exitTipoDefinicao(self, ctx:TimemaniaParser.TipoDefinicaoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#tipoSimples.
+    def enterTipoSimples(self, ctx:TimemaniaParser.TipoSimplesContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#tipoSimples.
+    def exitTipoSimples(self, ctx:TimemaniaParser.TipoSimplesContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#tipoEstruturado.
+    def enterTipoEstruturado(self, ctx:TimemaniaParser.TipoEstruturadoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#tipoEstruturado.
+    def exitTipoEstruturado(self, ctx:TimemaniaParser.TipoEstruturadoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#registroTipo.
+    def enterRegistroTipo(self, ctx:TimemaniaParser.RegistroTipoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#registroTipo.
+    def exitRegistroTipo(self, ctx:TimemaniaParser.RegistroTipoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#vetorTipo.
+    def enterVetorTipo(self, ctx:TimemaniaParser.VetorTipoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#vetorTipo.
+    def exitVetorTipo(self, ctx:TimemaniaParser.VetorTipoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#variavel.
+    def enterVariavel(self, ctx:TimemaniaParser.VariavelContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#variavel.
+    def exitVariavel(self, ctx:TimemaniaParser.VariavelContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#funcaoProcedimento.
+    def enterFuncaoProcedimento(self, ctx:TimemaniaParser.FuncaoProcedimentoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#funcaoProcedimento.
+    def exitFuncaoProcedimento(self, ctx:TimemaniaParser.FuncaoProcedimentoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#funcao.
+    def enterFuncao(self, ctx:TimemaniaParser.FuncaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#funcao.
+    def exitFuncao(self, ctx:TimemaniaParser.FuncaoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#procedimento.
+    def enterProcedimento(self, ctx:TimemaniaParser.ProcedimentoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#procedimento.
+    def exitProcedimento(self, ctx:TimemaniaParser.ProcedimentoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#parametro.
+    def enterParametro(self, ctx:TimemaniaParser.ParametroContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#parametro.
+    def exitParametro(self, ctx:TimemaniaParser.ParametroContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#retorno.
+    def enterRetorno(self, ctx:TimemaniaParser.RetornoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#retorno.
+    def exitRetorno(self, ctx:TimemaniaParser.RetornoContext):
+        pass
+
+
     # Enter a parse tree produced by TimemaniaParser#comando.
     def enterComando(self, ctx:TimemaniaParser.ComandoContext):
         pass
@@ -71,6 +197,15 @@ class TimemaniaParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TimemaniaParser#chamadaFuncao.
+    def enterChamadaFuncao(self, ctx:TimemaniaParser.ChamadaFuncaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#chamadaFuncao.
+    def exitChamadaFuncao(self, ctx:TimemaniaParser.ChamadaFuncaoContext):
+        pass
+
+
     # Enter a parse tree produced by TimemaniaParser#expressao.
     def enterExpressao(self, ctx:TimemaniaParser.ExpressaoContext):
         pass
@@ -95,15 +230,6 @@ class TimemaniaParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by TimemaniaParser#condicao.
     def exitCondicao(self, ctx:TimemaniaParser.CondicaoContext):
-        pass
-
-
-    # Enter a parse tree produced by TimemaniaParser#comparacao.
-    def enterComparacao(self, ctx:TimemaniaParser.ComparacaoContext):
-        pass
-
-    # Exit a parse tree produced by TimemaniaParser#comparacao.
-    def exitComparacao(self, ctx:TimemaniaParser.ComparacaoContext):
         pass
 
 

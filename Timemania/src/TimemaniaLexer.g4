@@ -1,15 +1,6 @@
 lexer grammar TimemaniaLexer;
 
-<<<<<<< HEAD
-// Palavras-chave da linguagem
-=======
-// Definição de tokens para palavras-chave
-VASCO: 'vasco';
->>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
-FLAMENGO: 'flamengo';
-CORINTHIANS: 'corinthians';
-PALMEIRAS: 'palmeiras';
-SANTOS: 'santos';
+// Palavras-chave existentes
 START: 'start';
 END: 'end';
 SE: 'se';
@@ -19,41 +10,51 @@ ENQUANTO: 'enquanto';
 FACA: 'faca';
 ESCREVA: 'escreva';
 LEIA: 'leia';
+
+// Times de futebol
+FLAMENGO: 'flamengo';
+CORINTHIANS: 'corinthians';
+PALMEIRAS: 'palmeiras';
+SANTOS: 'santos';
 VASCO: 'vasco';
-// Operadores aritméticos
-PLUS: '+' ;
-MINUS: '-';
-MULT: '*';
-DIV: '/';
-MOD: '%';
-OPERATOR: [+*/-];
-DELIMITER: [;,];
-PARENTESE: [()]; // Parênteses
-COMPARADOR: '>' | '<' | '==' | '!=' | '<=' | '>='; // Comparadores
-CHAVE: '{' | '}'; // Chaves
 
-<<<<<<< HEAD
+// Novas palavras-chave (inspiradas no Pascal)
+FUNCAO: 'funcao';
+PROCEDIMENTO: 'procedimento';
+RETORNA: 'retorna';
+PARA: 'para';
+ATE: 'ate';
+DE: 'de';
+REPITA: 'repita';
+TIPO: 'tipo';
+VAR: 'var';
+CONST: 'const';
+REGISTRO: 'registro';
+VETOR: 'vetor';
 
-// Operadores lógicos
-AND: '&&';
-OR: '||';
-NOT: '!';
+// Tipos de dados - adicionados para corrigir o erro
+INTEIRO: 'inteiro';
+TEXTO: 'texto';
+BOOLEANO: 'booleano';
 
-// Símbolos especiais
+// Símbolos
+PARENTESE: '(' | ')';
+CHAVE: '{' | '}';
+COLCHETE: '[' | ']';
+DELIMITER: ';';
 ASSIGN: ':=';
-SEMICOLON: ';';
-COMMA: ',';
+PONTO: '.';
+VIRGULA: ',';
+DOISPONTOS: ':';
+OPERATOR: '+' | '-' | '*' | '/' | '%' | '==' | '!=' | '&&' | '||' | '!';
+COMPARADOR: '>' | '<' | '>=' | '<=';
 
-// Literais e identificadores
-NUMBER: [0-9]+ ('.' [0-9]+)?;  // Suporte para números decimais
-ID: [a-zA-Z_][a-zA-Z0-9_]*;
-STRING: '"' (~["\r\n] | '\\"')* '"';  // Melhor tratamento para strings com escape
+// Literais
+NUMBER: [0-9]+;
+STRING: '"' .*? '"';
+ID: [a-zA-Z][a-zA-Z0-9_]*;
 
-// Ignorando espaços em branco e comentários
-COMMENT: '//' ~[\r\n]* -> skip;
-MULTILINE_COMMENT: '/*' .*? '*/' -> skip;  // Suporte para comentários multilinhas
+// Ignorar espaços em branco e comentários
 WS: [ \t\r\n]+ -> skip;
-=======
-// Ignorar espaços em branco
-WS: [ \t\r\n]+ -> skip;
->>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
+COMMENT: '//' .*? '\r'? '\n' -> skip;
+MULTILINE_COMMENT: '/*' .*? '*/' -> skip;

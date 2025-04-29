@@ -2,13 +2,57 @@ parser grammar TimemaniaParser;
 
 options { tokenVocab=TimemaniaLexer; }
 
-// Regras sintáticas usando os tokens definidos
-programa: START comando+ END;
+// Programa principal
+programa: START (declaracao)* comando+ END;
 
+// Declarações
+declaracao: constante
+          | tipagem
+          | variavel
+          | funcaoProcedimento;
+
+// Constantes
+constante: CONST ID ASSIGN expressao DELIMITER;
+
+// Definição de tipos
+tipagem: TIPO ID ASSIGN tipoDefinicao DELIMITER;
+
+tipoDefinicao: tipoSimples
+             | tipoEstruturado;
+
+tipoSimples: ID
+           | INTEIRO
+           | TEXTO
+           | BOOLEANO;
+
+tipoEstruturado: registroTipo
+               | vetorTipo;
+
+registroTipo: REGISTRO CHAVE (ID DOISPONTOS tipoDefinicao DELIMITER)+ CHAVE;
+
+vetorTipo: VETOR COLCHETE expressao COLCHETE DE tipoSimples;
+
+// Variáveis
+variavel: VAR ID (VIRGULA ID)* DOISPONTOS tipoSimples DELIMITER;
+
+// Funções e Procedimentos
+funcaoProcedimento: funcao
+                  | procedimento;
+
+funcao: FUNCAO ID PARENTESE parametro? PARENTESE DOISPONTOS tipoSimples CHAVE comando+ retorno CHAVE;
+
+procedimento: PROCEDIMENTO ID PARENTESE parametro? PARENTESE CHAVE comando+ CHAVE;
+
+parametro: ID DOISPONTOS tipoSimples (VIRGULA ID DOISPONTOS tipoSimples)*;
+
+retorno: RETORNA expressao DELIMITER;
+
+// Comandos existentes
 comando: atribuicao
        | futebol
        | io
-       | controle;
+       | controle
+       | chamadaFuncao;
 
 atribuicao: ID ASSIGN expressao DELIMITER;
 
@@ -18,24 +62,30 @@ futebol: VASCO PARENTESE STRING PARENTESE DELIMITER
        | PALMEIRAS PARENTESE PARENTESE DELIMITER
        | SANTOS PARENTESE STRING PARENTESE DELIMITER;
 
-
 io: ESCREVA PARENTESE expressao PARENTESE DELIMITER
    | LEIA PARENTESE ID PARENTESE DELIMITER;
 
+// Estruturas de controle estendidas
 controle: SE PARENTESE condicao PARENTESE ENTAO bloco (SENAO bloco)?
-        | ENQUANTO PARENTESE condicao PARENTESE FACA bloco;
+        | ENQUANTO PARENTESE condicao PARENTESE FACA bloco
+        | PARA ID ASSIGN expressao ATE expressao FACA bloco
+        | REPITA bloco ENQUANTO PARENTESE condicao PARENTESE DELIMITER;
 
 bloco: CHAVE comando+ CHAVE;
 
+// Nova construção para chamadas de função
+chamadaFuncao: ID PARENTESE (expressao (VIRGULA expressao)*)? PARENTESE DELIMITER;
+
+// Expressões e termos com suporte a arrays e registros
 expressao: termo (OPERATOR termo)*;
 
-termo: NUMBER | ID | PARENTESE expressao PARENTESE;
+termo: NUMBER 
+     | STRING
+     | ID
+     | ID COLCHETE expressao COLCHETE           // Acesso a vetor
+     | ID PONTO ID                              // Acesso a registro
+     | chamadaFuncao
+     | PARENTESE expressao PARENTESE;
 
-<<<<<<< HEAD
-condicao: expressao (OPERATOR expressao)? ;
-
-// Dentro de TimemaniaParser.g4
-comparacao: expressao (COMPARADOR expressao)? ; // Use o novo token COMPARADOR aqui!
-=======
-condicao: expressao (OPERATOR expressao)?;
->>>>>>> d6c0c88be28bc583a551ea763c98f119eeba5367
+condicao: expressao (OPERATOR expressao)? 
+        | expressao COMPARADOR expressao;

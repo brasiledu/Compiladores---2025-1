@@ -1,26 +1,35 @@
-// triangulo_pascal.tm
-escreva "Digite o número de linhas do Triângulo de Pascal:";
-leia n;
-
-se (n < 1) entao {
-    escreva "ERRO: O número deve ser maior ou igual a 1";
-} senao {
-    // Gera o triângulo de Pascal
-    linha := 0;
-    enquanto (linha < n) faca {
-        // Para cada linha, calcula os coeficientes
-        c := 1;
-        escreva c;  // Primeiro elemento (sempre 1)
-        
-        coluna := 1;
-        enquanto (coluna <= linha) faca {
-            // Calcula o próximo coeficiente usando a fórmula
-            c := c * (linha - coluna + 1) / coluna;
-            escreva c;
-            coluna := coluna + 1;
-        }
-
-        escreva "";  // Nova linha
-        linha := linha + 1;
+start
+    // Calculadora básica para demonstrar o Timemania
+    
+    // Exibe mensagem de boas-vindas
+    msg := "Bem-vindo à Calculadora Timemania!"
+    escreva(msg);
+    
+    // Solicita um número ao usuário
+    escreva("Digite um número:");
+    leia(numero);
+    
+    // Realiza cálculos simples
+    dobro := numero + numero;
+    quadrado := numero * numero;
+    
+    // Exibe resultados
+    escreva("O dobro do número é:");
+    escreva(dobro);
+    
+    escreva("O quadrado do número é:");
+    escreva(quadrado);
+    
+    // Estrutura condicional para verificar se é par ou ímpar
+    resto = numero % 2;
+    zero = resto == 0;
+    
+    se zero entao {
+        escreva("O número é par");
+    } senao {
+        escreva("O número é ímpar");
     }
-}
+    
+    // Comando temático para finalizar
+    flamengo("Cálculos realizados com sucesso!");
+end
