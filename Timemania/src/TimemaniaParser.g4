@@ -62,7 +62,9 @@ futebol: VASCO PARENTESE STRING PARENTESE DELIMITER
        | PALMEIRAS PARENTESE PARENTESE DELIMITER
        | SANTOS PARENTESE STRING PARENTESE DELIMITER;
 
+// Expandindo o IO para incluir saída sem quebra de linha
 io: ESCREVA PARENTESE expressao PARENTESE DELIMITER
+   | ESCREVA_SEM_QUEBRA PARENTESE expressao PARENTESE DELIMITER
    | LEIA PARENTESE ID PARENTESE DELIMITER;
 
 // Estruturas de controle estendidas
@@ -76,8 +78,12 @@ bloco: CHAVE comando+ CHAVE;
 // Nova construção para chamadas de função
 chamadaFuncao: ID PARENTESE (expressao (VIRGULA expressao)*)? PARENTESE DELIMITER;
 
-// Expressões e termos com suporte a arrays e registros
-expressao: termo (OPERATOR termo)*;
+// Expressões e termos com suporte expandido
+expressao: termo (OPERATOR termo)*
+         | concatenacao;
+
+// Adicionando concatenação de strings
+concatenacao: termo CONCATENAR termo;
 
 termo: NUMBER 
      | STRING
@@ -85,7 +91,16 @@ termo: NUMBER
      | ID COLCHETE expressao COLCHETE           // Acesso a vetor
      | ID PONTO ID                              // Acesso a registro
      | chamadaFuncao
-     | PARENTESE expressao PARENTESE;
+     | PARENTESE expressao PARENTESE
+     | conversor;                               // Conversão de tipos
+
+// Conversores de tipo
+conversor: PARA_TEXTO PARENTESE expressao PARENTESE
+         | PARA_NUMERO PARENTESE expressao PARENTESE;
+
+// Manipulação de arrays
+arrayOp: CRIAR_VETOR PARENTESE expressao PARENTESE
+       | TAMANHO PARENTESE ID PARENTESE;
 
 condicao: expressao (OPERATOR expressao)? 
         | expressao COMPARADOR expressao;

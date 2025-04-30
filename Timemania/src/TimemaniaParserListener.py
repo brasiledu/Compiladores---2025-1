@@ -215,12 +215,39 @@ class TimemaniaParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TimemaniaParser#concatenacao.
+    def enterConcatenacao(self, ctx:TimemaniaParser.ConcatenacaoContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#concatenacao.
+    def exitConcatenacao(self, ctx:TimemaniaParser.ConcatenacaoContext):
+        pass
+
+
     # Enter a parse tree produced by TimemaniaParser#termo.
     def enterTermo(self, ctx:TimemaniaParser.TermoContext):
         pass
 
     # Exit a parse tree produced by TimemaniaParser#termo.
     def exitTermo(self, ctx:TimemaniaParser.TermoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#conversor.
+    def enterConversor(self, ctx:TimemaniaParser.ConversorContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#conversor.
+    def exitConversor(self, ctx:TimemaniaParser.ConversorContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#arrayOp.
+    def enterArrayOp(self, ctx:TimemaniaParser.ArrayOpContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#arrayOp.
+    def exitArrayOp(self, ctx:TimemaniaParser.ArrayOpContext):
         pass
 
 

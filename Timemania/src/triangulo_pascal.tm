@@ -1,37 +1,38 @@
 start
-    // Calculadora básica para demonstrar o Timemania
+    // Triângulo de Pascal - Versão corrigida
+    escreva("Gerador de Triangulo de Pascal");
     
-    // Exibe mensagem de boas-vindas
-    msg := "Bem-vindo à Calculadora Timemania!";
-    escreva(msg);
+    escreva("Digite o numero de linhas (deve ser >= 1):");
+    leia(n);
     
-    // Solicita um número ao usuário
-    escreva("Digite um número:");
-    leia(numero);
-    
-    // Realiza cálculos simples
-    dobro := numero + numero;
-    quadrado := numero * numero;
-    
-    // Exibe resultados
-    escreva("O dobro do número é:");
-    escreva(dobro);
-    
-    escreva("O quadrado do número é:");
-    escreva(quadrado);
-    
-    // Estrutura condicional para verificar se é par ou ímpar
-    resto := numero % 2;
-    
-    zero := 4;
-
-    se (zero < 1)entao{
-        escreva("O número é par");
+    se (n < 1) entao {
+        escreva("ERRO: O numero deve ser maior ou igual a 1!");
     } senao {
-        escreva("O número é ímpar");
+        // Implementar usando método linha por linha
+        i := 0;
+        enquanto (i < n) faca {
+            // Imprime os espaços iniciais para centralização (opcional)
+            j := 0;
+            
+            // Imprime o primeiro 1 da linha
+            c := 1;
+            escreva(c);
+            
+            // Calcula e imprime os demais valores usando o Teorema Binomial
+            k := 1;
+            enquanto (k <= i) faca {
+                c := c * (i - k + 1) / k;
+                escreva(" ");
+                escreva(c);
+                k := k + 1;
+            }
+            
+            // Quebra de linha para a próxima linha do triângulo
+            escreva("");
+            
+            i := i + 1;
+        }
     }
     
-    // Comando temático para finalizar
-    flamengo("Cálculos realizados com sucesso!");
-    vasco("pau no rabo do mengo");
+    flamengo("Triangulo de Pascal gerado com sucesso!");
 end;

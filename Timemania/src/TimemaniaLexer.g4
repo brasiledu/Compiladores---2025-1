@@ -58,3 +58,17 @@ ID: [a-zA-Z][a-zA-Z0-9_]*;
 WS: [ \t\r\n]+ -> skip;
 COMMENT: '//' .*? '\r'? '\n' -> skip;
 MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
+
+// IO expandido
+ESCREVA_SEM_QUEBRA : 'escreva_sem_quebra';
+
+// Concatenação de strings
+CONCATENAR : '++';
+
+// Conversores de tipo
+PARA_TEXTO : 'para_texto';
+PARA_NUMERO : 'para_numero';
+
+// Manipulação de arrays
+CRIAR_VETOR : 'criar_vetor';
+TAMANHO : 'tamanho';
