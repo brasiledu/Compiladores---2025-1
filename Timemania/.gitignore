@@ -1,0 +1,29 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários ou de backup
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Diretórios de build ou binários
+build/
+dist/
+bin/
+
+# Configurações locais do editor/IDE
+.vscode/
+.idea/
+
+# Diretório do ambiente virtual Python
+venv/
+
+# Arquivos específicos do projeto
+*.tmc
+*.tmo
+*.tmp
