@@ -1,7 +1,6 @@
 # 🏆 Compilador Timemania
 
 <div align="center">
-  <img src="https://via.placeholder.com/400x100/121FCF/FFFFFF?text=TIMEMANIA+COMPILER" alt="Timemania Logo">
   <p><em>Um compilador educacional inspirado no universo do futebol brasileiro</em></p>
 </div>
 
