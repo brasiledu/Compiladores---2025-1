@@ -1,153 +1,220 @@
-# 🏆 Timemania Compiler
+# 🏆 Compilador Timemania
 
-![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-orange)
-![License](https://img.shields.io/badge/License-MIT-blue)
+<div align="center">
+  <img src="https://via.placeholder.com/400x100/121FCF/FFFFFF?text=TIMEMANIA+COMPILER" alt="Timemania Logo">
+  <p><em>Um compilador educacional inspirado no universo do futebol brasileiro</em></p>
+</div>
 
-**Timemania** é um compilador/interpretador para uma linguagem de programação educacional com tema esportivo brasileiro, desenvolvido como parte do curso de **Compiladores (2025-1)**. ⚽🎓
+![Licença](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.0.0-blue)
 
----
+## 📋 Índice
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Características da Linguagem](#-características-da-linguagem)
+- [Instalação](#-instalação)
+- [Como Usar](#-como-usar)
+- [Exemplos](#-exemplos)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Contribuição](#-contribuição)
+- [Reconhecimentos](#-reconhecimentos)
+- [Licença](#-licença)
+- [Contato](#-contato)
 
-## 📋 Sobre o Projeto
+## 🚀 Sobre o Projeto
 
-O compilador **Timemania** é uma implementação de uma linguagem de programação estruturada com palavras-chave inspiradas em **times de futebol brasileiros**. Este projeto demonstra conceitos fundamentais de compiladores, como:
-- **Análise léxica**
-- **Análise sintática**
-- **Interpretação**
+Timemania é um compilador desenvolvido como projeto acadêmico que implementa uma linguagem de programação com elementos do futebol brasileiro. O projeto inclui análise léxica, sintática e visa proporcionar uma experiência educativa tanto para quem desenvolve o compilador quanto para os usuários da linguagem.
 
----
+### Por que Timemania?
 
-## 🔧 Tecnologias Utilizadas
+- 🎓 **Educacional**: Perfeito para aprender os conceitos fundamentais de compiladores
+- 🇧🇷 **Temática brasileira**: Referências ao futebol nacional tornam o aprendizado divertido
+- 🧩 **Modular**: Arquitetura que permite fácil expansão e experimentação
 
-- **ANTLR4**: Para geração de lexer e parser
-- **Python**: Para o interpretador
-- **Java**: Para geração dos códigos ANTLR
+## 🔍 Características da Linguagem
 
----
+### Tipos de Dados
+- `inteiro` - números inteiros
+- `texto` - strings de texto
+- `booleano` - valores lógicos (verdadeiro/falso)
+- Suporte a estruturas de dados como `registro` e `vetor`
 
-## 🚀 Começando
+### Sintaxe Especial
+```
+start
+    // Times como comandos especiais
+    vasco("Gigante da Colina");
+    flamengo("Mengão");
+    corinthians(1910);
+    
+    // Estruturas de controle familiares
+    se (gols > 3) entao {
+        escreva("Goleada!");
+    } senao {
+        escreva("Jogo equilibrado");
+    }
+end;
+```
+
+### Recursos Principais
+- ✅ Entrada/saída via `leia()` e `escreva()`
+- ✅ Controle de fluxo com `se-entao-senao`, `enquanto-faca`, `para-ate`
+- ✅ Expressões aritméticas e lógicas com precedência definida
+- ✅ Funções e procedimentos
+- ✅ Tratamento de erros com mensagens claras
+
+## 💻 Instalação
 
 ### Pré-requisitos
+- JDK 11 ou superior
+- ANTLR4 Runtime
+- Graphviz (opcional, para visualização de AST)
 
-Certifique-se de ter instalado:
-- **Python 3.6 ou superior**
-- **ANTLR4 Runtime para Python**
-- **Java Runtime Environment** (para geração do ANTLR)
+### Passos
+```bash
+# Clone o repositório
+git clone https://github.com/brasiledu/compiladores---2025-1.git
 
-### Instalação
+# Entre no diretório
+cd compiladores---2025-1
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/brasiledu/Compiladores---2025-1.git
-   cd Compiladores---2025-1/Timemania
+# Compile o projeto
+python -cp "lib/*:." src/*.py -d bin/
 
-   Instale as dependências:
+# Execute o compilador
+python -cp "lib/*:bin" interpretador.py caminho/para/seu/programa.tm
+```
 
-bash
-pip install antlr4-python3-runtime
-Gere os arquivos do ANTLR (caso precise reconstruir o lexer/parser):
+## 🔧 Como Usar
 
-bash
-antlr4 -Dlanguage=Python3 src/TimemaniaLexer.g4
-antlr4 -Dlanguage=Python3 src/TimemaniaParser.g4
-
-## 📖 Sintaxe da Linguagem Timemania
-
-A linguagem **Timemania** possui uma **sintaxe simples e expressiva**, com palavras-chave temáticas que homenageiam o futebol brasileiro. ⚽
-
-### Estrutura Básica
-
-```plaintext
-start
-    // Seu código aqui
-end
-
-### Palavras-chave
-
-- **Estrutura**: `start`, `end`
-- **Times**: `flamengo`, `corinthians`, `palmeiras`, `santos`, `vasco`
-- **Controle**: `se`, `entao`, `senao`, `enquanto`, `faca`
-- **E/S**: `escreva`, `leia`
-
----
-
-### Operadores
-
-- **Aritméticos**: `+`, `-`, `*`, `/`, `%`
-- **Comparação**: `>`, `<`, `==`, `!=`, `<=`, `>=`
-- **Lógicos**: `&&`, `||`, `!`
-- **Atribuição**: `:=`
-
----
-
-### Exemplos de Comandos
-
-```plaintext
-// Entrada e saída
-escreva("Digite seu nome:")
-leia(nome)
-
-// Atribuição
-idade := 25
-
-// Controle de fluxo
-se idade >= 18 entao {
-    escreva("Maior de idade")
-} senao {
-    escreva("Menor de idade")
-}
-
-// Loops
-contador := 1
-enquanto contador <= 10 faca {
-    escreva(contador)
-    contador := contador + 1
-}
-
-// Comandos temáticos
-flamengo "Hoje tem gol do Gabigol!"
-
-## 💻 Como Usar
-
-Execute o interpretador com um arquivo fonte `.tm`:
+1. Crie um arquivo com extensão `.tm` contendo seu programa
+2. Execute o compilador passando o arquivo como argumento
+3. Visualize a saída do programa ou os erros detectados
 
 ```bash
-python src/interpretador.py exemplos/hello_world.tm
+# Execução básica
+python -cp "lib/*:bin" interpretador.py meu_programa.tm
 
-📝 Exemplos
-Hello World
-plaintext
+# Gerar visualização da AST
+python -cp "lib/*:bin" interpretador.py --ast meu_programa.tm
+
+# Modo verbose com todos os tokens
+python -cp "lib/*:bin" interpretador.py --verbose meu_programa.tm
+```
+
+## 📝 Exemplos
+
+### Classificação de Triângulos
+
+```
 start
-    mensagem := "Olá, mundo da Timemania!"
-    escreva(mensagem)
-end
-Calculadora Simples
-plaintext
-start
-    escreva("Digite o primeiro número:")
-    leia(a)
-    escreva("Digite o segundo número:")
-    leia(b)
+    escreva("Classificacao de Triangulos");
     
-    soma := a + b
-    escreva(soma)
+    escreva("Digite o valor do primeiro lado:");
+    leia(a);
     
-    diferenca := a - b
-    escreva(diferenca)
+    escreva("Digite o valor do segundo lado:");
+    leia(b);
     
-    produto := a * b
-    escreva(produto)
+    escreva("Digite o valor do terceiro lado:");
+    leia(c);
     
-    se b != 0 entao {
-        divisao := a / b
-        escreva(divisao)
+    se (a <= 0 || b <= 0 || c <= 0) entao {
+        escreva("ERRO: Todos os lados devem ser positivos!");
     } senao {
-        escreva("Não é possível dividir por zero")
+        se (a + b > c && a + c > b && b + c > a) entao {
+            se (a == b && b == c) entao {
+                escreva("Triangulo equilatero valido");
+            } senao {
+                se (a == b || b == c || a == c) entao {
+                    escreva("Triangulo isosceles valido");
+                } senao {
+                    escreva("Triangulo escaleno valido");
+                }
+            }
+        } senao {
+            escreva("Medidas invalidas");
+        }
     }
-end
-🔍 Depuração
-O projeto inclui um visualizador de árvore sintática para ajudar na depuração:
+end;
+```
 
-Python
-from tree_visualizer import TreeVisualizer
-visualizer = TreeVisualizer(parser)
-visualizer.visualize(tree)
+### Cálculo de Média
+
+```
+start
+    escreva("Calculo de Media");
+    
+    escreva("Digite a primeira nota:");
+    leia(nota1);
+    
+    escreva("Digite a segunda nota:");
+    leia(nota2);
+    
+    media := (nota1 + nota2) / 2;
+    
+    se (media >= 7) entao {
+        escreva("APROVADO com media " + para_texto(media));
+    } senao {
+        escreva("REPROVADO com media " + para_texto(media));
+    }
+end;
+```
+
+## 📁 Estrutura do Projeto
+
+```
+timemania-compiler/
+├── src/
+│   ├── TimemaniaLexer.g4          # Gramática para análise léxica
+│   ├── TimemaniaParser.g4         # Gramática para análise sintática
+│   ├── TimemaniaLexer.py        # Analisador léxico gerado
+│   ├── TimemaniaParser.py       # Analisador sintático gerado
+│   ├── interpretador.py     # Classe principal do compilador
+│   ├── TimemaniaErrorListener.py # Tratamento de erros personalizado
+│   └── ASTGenerator.py          # Gerador de AST visualizável
+├── lib/                           # Bibliotecas dependentes
+├── examples/                      # Programas de exemplo
+├── docs/                          # Documentação
+└── README.md                      # Este arquivo
+```
+
+## 🛠️ Tecnologias Utilizadas
+
+- **ANTLR4**: Framework para geração de analisadores léxicos e sintáticos
+- **Python**: Linguagem principal de implementação
+- **Graphviz**: Visualização de árvores sintáticas
+- **JUnit**: Testes unitários
+
+## 👥 Contribuição
+
+Contribuições são bem-vindas! Se você quiser melhorar este projeto:
+
+1. Faça um fork do projeto
+2. Crie sua branch de feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas alterações (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+## 🏅 Reconhecimentos
+
+- Prof. DR. [Ed Wilson] pela orientação no desenvolvimento do compilador
+- Colegas de classe pela ajuda nos testes e feedback
+- Comunidade ANTLR por fornecer excelentes ferramentas e documentação
+
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 📞 Contato
+
+brasiledu - [eduardo.viniciusac@gmail.com](mailto:eduardo.viniciusac@gmail.com)
+
+Link do projeto: [https://github.com/brasiledu/timemania-compiler](https://github.com/brasiledu/compiladores---2025-1)
+
+---
+
+<div align="center">
+  <sub>Feito com ❤️ por brasiledu</sub>
+</div>
