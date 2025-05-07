@@ -46,7 +46,14 @@ ASSIGN: ':=';
 PONTO: '.';
 VIRGULA: ',';
 DOISPONTOS: ':';
-OPERATOR: '+' | '-' | '*' | '/' | '%' | '==' | '!=' | '&&' | '||' | '!';
+
+// Operadores lógicos separados para melhor tratamento
+AND: '&&';
+OR: '||';
+NOT: '!';
+
+// Outros operadores
+OPERATOR: '+' | '-' | '*' | '/' | '%' | '==' | '!=';
 COMPARADOR: '>' | '<' | '>=' | '<=';
 
 // Literais

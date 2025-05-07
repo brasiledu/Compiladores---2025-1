@@ -12,7 +12,7 @@ declaracao: constante
           | funcaoProcedimento;
 
 // Constantes
-constante: CONST ID ASSIGN expressao DELIMITER;
+constante: CONST ID ASSIGN expressaoGeral DELIMITER;
 
 // Definição de tipos
 tipagem: TIPO ID ASSIGN tipoDefinicao DELIMITER;
@@ -30,7 +30,7 @@ tipoEstruturado: registroTipo
 
 registroTipo: REGISTRO CHAVE (ID DOISPONTOS tipoDefinicao DELIMITER)+ CHAVE;
 
-vetorTipo: VETOR COLCHETE expressao COLCHETE DE tipoSimples;
+vetorTipo: VETOR COLCHETE expressaoGeral COLCHETE DE tipoSimples;
 
 // Variáveis
 variavel: VAR ID (VIRGULA ID)* DOISPONTOS tipoSimples DELIMITER;
@@ -45,7 +45,7 @@ procedimento: PROCEDIMENTO ID PARENTESE parametro? PARENTESE CHAVE comando+ CHAV
 
 parametro: ID DOISPONTOS tipoSimples (VIRGULA ID DOISPONTOS tipoSimples)*;
 
-retorno: RETORNA expressao DELIMITER;
+retorno: RETORNA expressaoGeral DELIMITER;
 
 // Comandos existentes
 comando: atribuicao
@@ -54,7 +54,8 @@ comando: atribuicao
        | controle
        | chamadaFuncao;
 
-atribuicao: ID ASSIGN expressao DELIMITER;
+// MODIFICADO: Agora usa expressaoGeral em vez de expressao
+atribuicao: ID ASSIGN expressaoGeral DELIMITER;
 
 futebol: VASCO PARENTESE STRING PARENTESE DELIMITER
        | FLAMENGO PARENTESE STRING PARENTESE DELIMITER
@@ -63,20 +64,28 @@ futebol: VASCO PARENTESE STRING PARENTESE DELIMITER
        | SANTOS PARENTESE STRING PARENTESE DELIMITER;
 
 // Expandindo o IO para incluir saída sem quebra de linha
-io: ESCREVA PARENTESE expressao PARENTESE DELIMITER
-   | ESCREVA_SEM_QUEBRA PARENTESE expressao PARENTESE DELIMITER
+// MODIFICADO: Também usa expressaoGeral
+io: ESCREVA PARENTESE expressaoGeral PARENTESE DELIMITER
+   | ESCREVA_SEM_QUEBRA PARENTESE expressaoGeral PARENTESE DELIMITER
    | LEIA PARENTESE ID PARENTESE DELIMITER;
 
 // Estruturas de controle estendidas
 controle: SE PARENTESE condicao PARENTESE ENTAO bloco (SENAO bloco)?
         | ENQUANTO PARENTESE condicao PARENTESE FACA bloco
-        | PARA ID ASSIGN expressao ATE expressao FACA bloco
+        | PARA ID ASSIGN expressaoGeral ATE expressaoGeral FACA bloco
         | REPITA bloco ENQUANTO PARENTESE condicao PARENTESE DELIMITER;
 
 bloco: CHAVE comando+ CHAVE;
 
 // Nova construção para chamadas de função
-chamadaFuncao: ID PARENTESE (expressao (VIRGULA expressao)*)? PARENTESE DELIMITER;
+// MODIFICADO: Usa expressaoGeral
+chamadaFuncao: ID PARENTESE (expressaoGeral (VIRGULA expressaoGeral)*)? PARENTESE DELIMITER;
+
+// NOVA REGRA: Expressão Geral que inclui tanto expressões aritméticas quanto condicionais
+expressaoGeral
+    : expressao
+    | condicao          // Aqui está a grande modificação - condicao pode ser usada onde expressao é esperada
+    ;
 
 // Expressões e termos com suporte expandido
 expressao: termo (OPERATOR termo)*
@@ -88,19 +97,42 @@ concatenacao: termo CONCATENAR termo;
 termo: NUMBER 
      | STRING
      | ID
-     | ID COLCHETE expressao COLCHETE           // Acesso a vetor
+     | ID COLCHETE expressaoGeral COLCHETE           // Acesso a vetor - modificado
      | ID PONTO ID                              // Acesso a registro
      | chamadaFuncao
-     | PARENTESE expressao PARENTESE
+     | PARENTESE expressaoGeral PARENTESE            // Modificado
      | conversor;                               // Conversão de tipos
 
 // Conversores de tipo
-conversor: PARA_TEXTO PARENTESE expressao PARENTESE
-         | PARA_NUMERO PARENTESE expressao PARENTESE;
+conversor: PARA_TEXTO PARENTESE expressaoGeral PARENTESE       // Modificado
+         | PARA_NUMERO PARENTESE expressaoGeral PARENTESE;     // Modificado
 
 // Manipulação de arrays
-arrayOp: CRIAR_VETOR PARENTESE expressao PARENTESE
+arrayOp: CRIAR_VETOR PARENTESE expressaoGeral PARENTESE       // Modificado
        | TAMANHO PARENTESE ID PARENTESE;
 
-condicao: expressao (OPERATOR expressao)? 
-        | expressao COMPARADOR expressao;
+// CORRIGIDO: Operações de igualdade/diferença definidas corretamente
+condicao
+    : condicaoOr
+    ;
+
+condicaoOr
+    : condicaoAnd (OR condicaoAnd)*
+    ;
+
+condicaoAnd
+    : condicaoUnary (AND condicaoUnary)*
+    ;
+
+condicaoUnary
+    : condicaoAtom
+    | NOT condicaoUnary
+    ;
+
+condicaoAtom
+    : PARENTESE condicao PARENTESE
+    | expressao COMPARADOR expressao      // Comparações como > < >= <=
+    | expressao OPERATOR expressao            // Igualdade - corrigido
+    | expressao OPERATOR expressao            // Diferença - corrigido
+    | expressao                           // Valor booleano simples
+    ;

@@ -206,6 +206,15 @@ class TimemaniaParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TimemaniaParser#expressaoGeral.
+    def enterExpressaoGeral(self, ctx:TimemaniaParser.ExpressaoGeralContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#expressaoGeral.
+    def exitExpressaoGeral(self, ctx:TimemaniaParser.ExpressaoGeralContext):
+        pass
+
+
     # Enter a parse tree produced by TimemaniaParser#expressao.
     def enterExpressao(self, ctx:TimemaniaParser.ExpressaoContext):
         pass
@@ -257,6 +266,42 @@ class TimemaniaParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by TimemaniaParser#condicao.
     def exitCondicao(self, ctx:TimemaniaParser.CondicaoContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#condicaoOr.
+    def enterCondicaoOr(self, ctx:TimemaniaParser.CondicaoOrContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#condicaoOr.
+    def exitCondicaoOr(self, ctx:TimemaniaParser.CondicaoOrContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#condicaoAnd.
+    def enterCondicaoAnd(self, ctx:TimemaniaParser.CondicaoAndContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#condicaoAnd.
+    def exitCondicaoAnd(self, ctx:TimemaniaParser.CondicaoAndContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#condicaoUnary.
+    def enterCondicaoUnary(self, ctx:TimemaniaParser.CondicaoUnaryContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#condicaoUnary.
+    def exitCondicaoUnary(self, ctx:TimemaniaParser.CondicaoUnaryContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#condicaoAtom.
+    def enterCondicaoAtom(self, ctx:TimemaniaParser.CondicaoAtomContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#condicaoAtom.
+    def exitCondicaoAtom(self, ctx:TimemaniaParser.CondicaoAtomContext):
         pass
 
 
