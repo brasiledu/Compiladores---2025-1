@@ -28,9 +28,9 @@ tipoSimples: ID
 tipoEstruturado: registroTipo
                | vetorTipo;
 
-registroTipo: REGISTRO CHAVE (ID DOISPONTOS tipoDefinicao DELIMITER)+ CHAVE;
+registroTipo: ABRE_CHAVE (ID DOISPONTOS tipoDefinicao DELIMITER)+ FECHA_CHAVE;
 
-vetorTipo: VETOR COLCHETE expressaoGeral COLCHETE DE tipoSimples;
+vetorTipo: VETOR ABRE_COLCHETE expressaoGeral FECHA_COLCHETE DE tipoSimples;
 
 // Variáveis
 variavel: VAR ID (VIRGULA ID)* DOISPONTOS tipoSimples DELIMITER;
@@ -39,9 +39,9 @@ variavel: VAR ID (VIRGULA ID)* DOISPONTOS tipoSimples DELIMITER;
 funcaoProcedimento: funcao
                   | procedimento;
 
-funcao: FUNCAO ID PARENTESE parametro? PARENTESE DOISPONTOS tipoSimples CHAVE comando+ retorno CHAVE;
+funcao: FUNCAO ID ABRE_PARENTESE parametro? FECHA_PARENTESE DOISPONTOS tipoSimples ABRE_CHAVE comando+ retorno FECHA_CHAVE;
 
-procedimento: PROCEDIMENTO ID PARENTESE parametro? PARENTESE CHAVE comando+ CHAVE;
+procedimento: PROCEDIMENTO ID ABRE_PARENTESE parametro? FECHA_PARENTESE ABRE_CHAVE comando+ FECHA_CHAVE;
 
 parametro: ID DOISPONTOS tipoSimples (VIRGULA ID DOISPONTOS tipoSimples)*;
 
@@ -52,87 +52,63 @@ comando: atribuicao
        | futebol
        | io
        | controle
-       | chamadaFuncao;
+       | chamadaFuncao DELIMITER;
 
-// MODIFICADO: Agora usa expressaoGeral em vez de expressao
 atribuicao: ID ASSIGN expressaoGeral DELIMITER;
 
-futebol: VASCO PARENTESE STRING PARENTESE DELIMITER
-       | FLAMENGO PARENTESE STRING PARENTESE DELIMITER
-       | CORINTHIANS PARENTESE NUMBER PARENTESE DELIMITER
-       | PALMEIRAS PARENTESE PARENTESE DELIMITER
-       | SANTOS PARENTESE STRING PARENTESE DELIMITER;
+futebol: VASCO ABRE_PARENTESE STRING FECHA_PARENTESE DELIMITER
+       | FLAMENGO ABRE_PARENTESE STRING FECHA_PARENTESE DELIMITER
+       | CORINTHIANS ABRE_PARENTESE NUMBER FECHA_PARENTESE DELIMITER
+       | PALMEIRAS ABRE_PARENTESE FECHA_PARENTESE DELIMITER
+       | SANTOS ABRE_PARENTESE STRING FECHA_PARENTESE DELIMITER;
 
-// Expandindo o IO para incluir saída sem quebra de linha
-// MODIFICADO: Também usa expressaoGeral
-io: ESCREVA PARENTESE expressaoGeral PARENTESE DELIMITER
-   | ESCREVA_SEM_QUEBRA PARENTESE expressaoGeral PARENTESE DELIMITER
-   | LEIA PARENTESE ID PARENTESE DELIMITER;
+io: ESCREVA ABRE_PARENTESE expressaoGeral FECHA_PARENTESE DELIMITER
+   | ESCREVA_SEM_QUEBRA ABRE_PARENTESE expressaoGeral FECHA_PARENTESE DELIMITER
+   | LEIA ABRE_PARENTESE ID FECHA_PARENTESE DELIMITER;
 
-// Estruturas de controle estendidas
-controle: SE PARENTESE condicao PARENTESE ENTAO bloco (SENAO bloco)?
-        | ENQUANTO PARENTESE condicao PARENTESE FACA bloco
+controle: SE ABRE_PARENTESE condicao FECHA_PARENTESE ENTAO bloco (SENAO bloco)?
+        | ENQUANTO ABRE_PARENTESE condicao FECHA_PARENTESE FACA bloco
         | PARA ID ASSIGN expressaoGeral ATE expressaoGeral FACA bloco
-        | REPITA bloco ENQUANTO PARENTESE condicao PARENTESE DELIMITER;
+        | REPITA bloco ENQUANTO ABRE_PARENTESE condicao FECHA_PARENTESE DELIMITER;
 
-bloco: CHAVE comando+ CHAVE;
+bloco: ABRE_CHAVE comando+ FECHA_CHAVE;
 
-// Nova construção para chamadas de função
-// MODIFICADO: Usa expressaoGeral
-chamadaFuncao: ID PARENTESE (expressaoGeral (VIRGULA expressaoGeral)*)? PARENTESE DELIMITER;
+chamadaFuncao: ID ABRE_PARENTESE (expressaoGeral (VIRGULA expressaoGeral)*)? FECHA_PARENTESE;
 
-// NOVA REGRA: Expressão Geral que inclui tanto expressões aritméticas quanto condicionais
 expressaoGeral
     : expressao
-    | condicao          // Aqui está a grande modificação - condicao pode ser usada onde expressao é esperada
-    ;
+    | condicao;
 
-// Expressões e termos com suporte expandido
-expressao: termo (OPERATOR termo)*
+expressao: termo (OPERADOR_ARITMETICO termo)*
          | concatenacao;
 
-// Adicionando concatenação de strings
 concatenacao: termo CONCATENAR termo;
 
 termo: NUMBER 
      | STRING
      | ID
-     | ID COLCHETE expressaoGeral COLCHETE           // Acesso a vetor - modificado
-     | ID PONTO ID                              // Acesso a registro
+     | ID ABRE_COLCHETE expressaoGeral FECHA_COLCHETE
+     | ID PONTO ID
      | chamadaFuncao
-     | PARENTESE expressaoGeral PARENTESE            // Modificado
-     | conversor;                               // Conversão de tipos
+     | ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
+     | conversor;
 
-// Conversores de tipo
-conversor: PARA_TEXTO PARENTESE expressaoGeral PARENTESE       // Modificado
-         | PARA_NUMERO PARENTESE expressaoGeral PARENTESE;     // Modificado
+conversor: PARA_TEXTO ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
+         | PARA_NUMERO ABRE_PARENTESE expressaoGeral FECHA_PARENTESE;
 
-// Manipulação de arrays
-arrayOp: CRIAR_VETOR PARENTESE expressaoGeral PARENTESE       // Modificado
-       | TAMANHO PARENTESE ID PARENTESE;
+arrayOp: CRIAR_VETOR ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
+       | TAMANHO ABRE_PARENTESE ID FECHA_PARENTESE;
 
-// CORRIGIDO: Operações de igualdade/diferença definidas corretamente
-condicao
-    : condicaoOr
-    ;
+condicao: condicaoOr;
 
-condicaoOr
-    : condicaoAnd (OR condicaoAnd)*
-    ;
+condicaoOr: condicaoAnd (OR condicaoAnd)*;
 
-condicaoAnd
-    : condicaoUnary (AND condicaoUnary)*
-    ;
+condicaoAnd: condicaoUnary (AND condicaoUnary)*;
 
-condicaoUnary
-    : condicaoAtom
-    | NOT condicaoUnary
-    ;
+condicaoUnary: condicaoAtom
+             | NOT condicaoUnary;
 
-condicaoAtom
-    : PARENTESE condicao PARENTESE
-    | expressao COMPARADOR expressao      // Comparações como > < >= <=
-    | expressao OPERATOR expressao            // Igualdade - corrigido
-    | expressao OPERATOR expressao            // Diferença - corrigido
-    | expressao                           // Valor booleano simples
-    ;
+condicaoAtom: ABRE_PARENTESE condicao FECHA_PARENTESE
+            | expressao COMPARADOR expressao
+            | expressao
+            ;

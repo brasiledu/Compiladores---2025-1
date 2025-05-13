@@ -1,81 +1,86 @@
 lexer grammar TimemaniaLexer;
 
-// Palavras-chave existentes
-START: 'start';
-END: 'end';
+// Palavras-chave
+START: 'inicio';
+END: 'fim';
+CONST: 'const';
+TIPO: 'tipo';
+VAR: 'var';
+FUNCAO: 'funcao';
+PROCEDIMENTO: 'procedimento';
+RETORNA: 'retorna';
 SE: 'se';
 ENTAO: 'entao';
 SENAO: 'senao';
 ENQUANTO: 'enquanto';
 FACA: 'faca';
-ESCREVA: 'escreva';
-LEIA: 'leia';
-
-// Times de futebol
-FLAMENGO: 'flamengo';
-CORINTHIANS: 'corinthians';
-PALMEIRAS: 'palmeiras';
-SANTOS: 'santos';
-VASCO: 'vasco';
-
-// Novas palavras-chave (inspiradas no Pascal)
-FUNCAO: 'funcao';
-PROCEDIMENTO: 'procedimento';
-RETORNA: 'retorna';
 PARA: 'para';
 ATE: 'ate';
-DE: 'de';
 REPITA: 'repita';
-TIPO: 'tipo';
-VAR: 'var';
-CONST: 'const';
-REGISTRO: 'registro';
-VETOR: 'vetor';
+DE: 'de';
 
-// Tipos de dados - adicionados para corrigir o erro
+// Tipos
 INTEIRO: 'inteiro';
 TEXTO: 'texto';
 BOOLEANO: 'booleano';
 
-// Símbolos
-PARENTESE: '(' | ')';
-CHAVE: '{' | '}';
-COLCHETE: '[' | ']';
+// Operadores lógicos
+OR: 'ou';
+AND: 'e';
+NOT: 'nao';
+
+// Operadores de comparação
+COMPARADOR: '==' | '!=' | '>=' | '<=' | '>' | '<';
+
+// Operadores aritméticos
+OPERADOR_ARITMETICO: '+' | '-' | '*' | '/' | '%';
+
+// Atribuição e outros
+ASSIGN: '=';
+CONCATENAR: '++';
 DELIMITER: ';';
-ASSIGN: ':=';
-PONTO: '.';
-VIRGULA: ',';
 DOISPONTOS: ':';
+VIRGULA: ',';
+PONTO: '.';
 
-// Operadores lógicos separados para melhor tratamento
-AND: '&&';
-OR: '||';
-NOT: '!';
+// Agrupadores
+ABRE_PARENTESE: '(';
+FECHA_PARENTESE: ')';
+ABRE_CHAVE: '{';
+FECHA_CHAVE: '}';
+ABRE_COLCHETE: '[';
+FECHA_COLCHETE: ']';
 
-// Outros operadores
-OPERATOR: '+' | '-' | '*' | '/' | '%' | '==' | '!=';
-COMPARADOR: '>' | '<' | '>=' | '<=';
-
-// Literais
+// Identificadores e literais
+ID: [a-zA-Z_][a-zA-Z_0-9]*;
 NUMBER: [0-9]+;
-STRING: '"' .*? '"';
-ID: [a-zA-Z][a-zA-Z0-9_]*;
+STRING: '"' (~['"\\\r\n])* '"';
 
-// Ignorar espaços em branco e comentários
+// Espaços em branco e comentários
 WS: [ \t\r\n]+ -> skip;
-COMMENT: '//' .*? '\r'? '\n' -> skip;
-MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
+LINE_COMMENT: '//' ~[\r\n]* -> skip;
+BLOCK_COMMENT: '/' .? '*/' -> skip;
 
-// IO expandido
-ESCREVA_SEM_QUEBRA : 'escreva_sem_quebra';
+// IO
+ESCREVA: 'escreva';
+ESCREVA_SEM_QUEBRA: 'escreva_s';
+LEIA: 'leia';
 
-// Concatenação de strings
-CONCATENAR : '++';
+// Conversores
+PARA_TEXTO: 'texto';
+PARA_NUMERO: 'numero';
 
-// Conversores de tipo
-PARA_TEXTO : 'para_texto';
-PARA_NUMERO : 'para_numero';
+// Vetores
+CRIAR_VETOR: 'vetor';
+TAMANHO: 'tamanho';
 
-// Manipulação de arrays
-CRIAR_VETOR : 'criar_vetor';
-TAMANHO : 'tamanho';
+// Tipos estruturados
+REGISTRO: 'registro';
+VETOR: 'vetor';
+
+// Temáticos (futebol)
+VASCO: 'vasco';
+FLAMENGO: 'flamengo';
+CORINTHIANS: 'corinthians';
+PALMEIRAS: 'palmeiras';
+SANTOS: 'santos';
