@@ -2,7 +2,7 @@ from antlr4 import *
 from TimemaniaLexer import TimemaniaLexer
 from TimemaniaParser import TimemaniaParser
 from interpretador import TimemaniaVisitor  
-from semantic_analyzer import SemanticAnalyzer  # ✅ Analisador semântico
+from semantic_analyzer import SemanticAnalyzer 
 
 def main():
     arquivo = "tests/exemplo_entrada.tm"
@@ -38,7 +38,7 @@ def main():
     # Exibir a árvore sintática
     print(tree.toStringTree(recog=parser))
 
-    # ✅ ANÁLISE SEMÂNTICA
+    # ANÁLISE SEMÂNTICA
     analisador = SemanticAnalyzer()
     analisador.visit(tree)
     analisador.report_errors()
