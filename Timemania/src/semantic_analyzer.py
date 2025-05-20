@@ -117,3 +117,6 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
         else:
             for erro in self.errors:
                 print("Erro!", erro)
+
+
+                
