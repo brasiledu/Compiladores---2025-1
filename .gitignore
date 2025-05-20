@@ -1,0 +1,21 @@
+# Ambiente virtual Python
+/venv/
+/**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribuições
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Logs
+*.log
+
+# Arquivos específicos do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
