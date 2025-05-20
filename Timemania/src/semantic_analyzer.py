@@ -4,15 +4,12 @@ from .antlr.TimemaniaParser import TimemaniaParser
 # Classe responsável pela análise semântica do código-fonte
 class SemanticAnalyzer(TimemaniaParserVisitor):
     def __init__(self):
-        # Tabela de símbolos: guarda o nome e tipo de variáveis declaradas
-        self.symbol_table = {}  # Ex: {'x': 'int', 'nome': 'string'}
-        # Lista de mensagens de erro semântico encontradas durante a análise
+        self.symbol_table = {}  
         self.errors = []
 
     # Visita as declarações de variáveis (ex: int x;)
     def visitDeclaracoes(self, ctx):
         for declaracao in ctx.getChildren():
-            # Verifica se a declaração tem tipo e nome válidos
             if hasattr(declaracao, 'tipo') and declaracao.tipo():
                 tipo = declaracao.tipo().getText()
                 nome = declaracao.ID().getText()
@@ -23,12 +20,10 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
                 else:
                     # Armazena a variável e seu tipo na tabela de símbolos
                     self.symbol_table[nome] = tipo
-        # Continua a visita nos filhos do nó
         return self.visitChildren(ctx)
 
     # Visita os comandos (ex: atribuições, leia, escreva)
     def visitComando(self, ctx):
-        # Verifica se é uma atribuição (ex: x = expressão;)
         if ctx.ID() and ctx.expressao():
             nome = ctx.ID().getText()
 
@@ -36,14 +31,23 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
             if nome not in self.symbol_table:
                 self.errors.append(f"Erro semântico: variável '{nome}' não foi declarada.")
             else:
-                tipo_var = self.symbol_table[nome]         # Tipo da variável
-                tipo_expr = self.visit(ctx.expressao())    # Tipo da expressão atribuída
+                tipo_var = self.symbol_table[nome]       
+                tipo_expr = self.visit(ctx.expressao())   
 
                 # Verifica compatibilidade de tipos na atribuição
                 if tipo_var != tipo_expr and tipo_expr != 'erro':
                     self.errors.append(
                         f"Erro de tipo: variável '{nome}' é '{tipo_var}', mas expressão é '{tipo_expr}'."
                     )
+        elif ctx.getText().startswith("leia"):
+            nome = ctx.ID().getText()
+            if nome not in self.symbol_table:
+                self.errors.append(f"ERRO SEMÂNTICO: variável '{nome}' usada em 'leia' sem declaração.")
+
+        elif ctx.getText().startswith("leia"):
+            tipo = self.visit(ctx.expressao())
+            if tipo == 'erro':
+                self.errors.append(f"ERRO SEMÂNTICO: expressão inválida em 'escreva'.")
 
         return self.visitChildren(ctx)
 
@@ -53,9 +57,14 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
 
         # Expressão binária (ex: a + b, a == b, a && b)
         if len(filhos) == 3:
-            esq = self.visit(filhos[0])      # Lado esquerdo
-            op = filhos[1].getText()         # Operador
-            dir = self.visit(filhos[2])      # Lado direito
+            esq = self.visit(filhos[0])      
+            op = filhos[1].getText()         
+            dir = self.visit(filhos[2])  
+
+        # Verificação de divisão por zero
+        if op == '/' and dir == '0':
+            self.errors.append("ERRO SEMÂNTICO: divisão por zero.")
+            return 'erro'
 
             # Operações aritméticas exigem dois inteiros
             if op in ['+', '-', '*', '/']:
@@ -119,4 +128,4 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
                 print("Erro!", erro)
 
 
-                
+
