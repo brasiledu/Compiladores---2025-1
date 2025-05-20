@@ -5,7 +5,7 @@ from interpretador import TimemaniaVisitor
 from semantic_analyzer import SemanticAnalyzer 
 
 def main():
-    arquivo = "tests/exemplo_entrada.tm"
+    arquivo = "tests/teste_erros_semanticos.tm"
     
     try:
         # Ler o arquivo de entrada
