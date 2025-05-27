@@ -1,14 +1,15 @@
 parser grammar TimemaniaParser;
 
-options { tokenVocab=TimemaniaLexer; }
+options { tokenVocab = TimemaniaLexer; }
 
 // Programa principal
-programa: START (declaracao)* comando+ END;
+programa: START (declaracao)* comando+ END DELIMITER;
 
 // Declarações
 declaracao: constante
           | tipagem
           | variavel
+          | variavelSimples
           | funcaoProcedimento;
 
 // Constantes
@@ -30,10 +31,13 @@ tipoEstruturado: registroTipo
 
 registroTipo: ABRE_CHAVE (ID DOISPONTOS tipoDefinicao DELIMITER)+ FECHA_CHAVE;
 
-vetorTipo: VETOR ABRE_COLCHETE expressaoGeral FECHA_COLCHETE DE tipoSimples;
+vetorTipo: CRIAR_VETOR ABRE_COLCHETE expressaoGeral FECHA_COLCHETE DE tipoSimples;
 
 // Variáveis
 variavel: VAR ID (VIRGULA ID)* DOISPONTOS tipoSimples DELIMITER;
+
+// Declaração simples de variável (tipo nome;)
+variavelSimples: tipoSimples ID DELIMITER;
 
 // Funções e Procedimentos
 funcaoProcedimento: funcao
@@ -91,10 +95,8 @@ termo: NUMBER
      | ID PONTO ID
      | chamadaFuncao
      | ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
-     | conversor;
+     ;
 
-conversor: PARA_TEXTO ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
-         | PARA_NUMERO ABRE_PARENTESE expressaoGeral FECHA_PARENTESE;
 
 arrayOp: CRIAR_VETOR ABRE_PARENTESE expressaoGeral FECHA_PARENTESE
        | TAMANHO ABRE_PARENTESE ID FECHA_PARENTESE;
@@ -111,4 +113,4 @@ condicaoUnary: condicaoAtom
 condicaoAtom: ABRE_PARENTESE condicao FECHA_PARENTESE
             | expressao COMPARADOR expressao
             | expressao
-            ;
+            ;

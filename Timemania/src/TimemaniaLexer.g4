@@ -1,8 +1,8 @@
 lexer grammar TimemaniaLexer;
 
 // Palavras-chave
-START: 'inicio';
-END: 'fim';
+START: 'start';
+END: 'end';
 CONST: 'const';
 TIPO: 'tipo';
 VAR: 'var';
@@ -36,7 +36,7 @@ COMPARADOR: '==' | '!=' | '>=' | '<=' | '>' | '<';
 OPERADOR_ARITMETICO: '+' | '-' | '*' | '/' | '%';
 
 // Atribuição e outros
-ASSIGN: '=';
+ASSIGN: ':=';
 CONCATENAR: '++';
 DELIMITER: ';';
 DOISPONTOS: ':';
@@ -67,8 +67,6 @@ ESCREVA_SEM_QUEBRA: 'escreva_s';
 LEIA: 'leia';
 
 // Conversores
-PARA_TEXTO: 'texto';
-PARA_NUMERO: 'numero';
 
 // Vetores
 CRIAR_VETOR: 'vetor';
@@ -76,11 +74,10 @@ TAMANHO: 'tamanho';
 
 // Tipos estruturados
 REGISTRO: 'registro';
-VETOR: 'vetor';
 
 // Temáticos (futebol)
 VASCO: 'vasco';
 FLAMENGO: 'flamengo';
 CORINTHIANS: 'corinthians';
 PALMEIRAS: 'palmeiras';
-SANTOS: 'santos';
+SANTOS: 'santos';

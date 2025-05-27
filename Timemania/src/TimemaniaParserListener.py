@@ -1,4 +1,4 @@
-# Generated from TimemaniaParser.g4 by ANTLR 4.13.2
+# Generated from TimemaniaParser.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .TimemaniaParser import TimemaniaParser
@@ -95,6 +95,15 @@ class TimemaniaParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by TimemaniaParser#variavel.
     def exitVariavel(self, ctx:TimemaniaParser.VariavelContext):
+        pass
+
+
+    # Enter a parse tree produced by TimemaniaParser#variavelSimples.
+    def enterVariavelSimples(self, ctx:TimemaniaParser.VariavelSimplesContext):
+        pass
+
+    # Exit a parse tree produced by TimemaniaParser#variavelSimples.
+    def exitVariavelSimples(self, ctx:TimemaniaParser.VariavelSimplesContext):
         pass
 
 
@@ -239,15 +248,6 @@ class TimemaniaParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by TimemaniaParser#termo.
     def exitTermo(self, ctx:TimemaniaParser.TermoContext):
-        pass
-
-
-    # Enter a parse tree produced by TimemaniaParser#conversor.
-    def enterConversor(self, ctx:TimemaniaParser.ConversorContext):
-        pass
-
-    # Exit a parse tree produced by TimemaniaParser#conversor.
-    def exitConversor(self, ctx:TimemaniaParser.ConversorContext):
         pass
 
 

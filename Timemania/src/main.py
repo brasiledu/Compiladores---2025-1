@@ -1,11 +1,17 @@
+import sys
 from antlr4 import *
 from TimemaniaLexer import TimemaniaLexer
 from TimemaniaParser import TimemaniaParser
-from interpretador import TimemaniaVisitor  
+from TimemaniaParserVisitor import TimemaniaParserVisitor
 from semantic_analyzer import SemanticAnalyzer 
 
 def main():
-    arquivo = "tests/teste_erros_semanticos.tm"
+    # Verificar se foi fornecido um arquivo como argumento
+    if len(sys.argv) != 2:
+        print("Uso: python main.py <arquivo.tm>")
+        return
+    
+    arquivo = sys.argv[1]
     
     try:
         # Ler o arquivo de entrada
@@ -40,22 +46,15 @@ def main():
 
     # ANÁLISE SEMÂNTICA
     analisador = SemanticAnalyzer()
-    analisador.visit(tree)
+    analisador.visitPrograma(tree)  # Chama explicitamente o método visitPrograma
     analisador.report_errors()
 
     # Se houver erros semânticos, interromper a execução
     if analisador.errors:
         print("Execução interrompida devido a erros semânticos.")
         return
-
-    # Interpretar o código com o Visitor
-    visitor = TimemaniaVisitor()
-
-    try:
-        visitor.visit(tree)
-    except Exception as e:
-        print(f"Erro ao interpretar a árvore: {e}")
-        return
+    else:
+        print("✅ Análise semântica concluída sem erros!")
 
 if __name__ == "__main__":
     main()
