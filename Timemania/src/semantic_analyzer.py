@@ -10,7 +10,7 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
 
     # Visita o programa principal (nó raiz)
     def visitPrograma(self, ctx):
-        print("🚀 Iniciando análise semântica do programa...")
+        print("Iniciando análise semântica do programa...")
         
         # Processa todas as declarações primeiro
         declaracoes = ctx.declaracao()
@@ -36,7 +36,7 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
                 else:
                     self.visit(comando)
         
-        print("✅ Análise semântica do programa concluída!")
+        print("Análise semântica do programa concluída!")
         return None
 
     # Visita declarações de variáveis simples (tipo nome;)
@@ -276,8 +276,8 @@ class SemanticAnalyzer(TimemaniaParserVisitor):
     # Método para reportar erros
     def report_errors(self):
         if self.errors:
-            print("\n❌ ERROS SEMÂNTICOS ENCONTRADOS:")
+            print("\nERROS SEMÂNTICOS ENCONTRADOS:")
             for erro in self.errors:
                 print(f"  - {erro}")
         else:
-            print("\n✅ Nenhum erro semântico encontrado!")
+            print("\nNenhum erro semântico encontrado!")

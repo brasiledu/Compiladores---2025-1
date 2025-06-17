@@ -59,6 +59,11 @@ class TimemaniaParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by TimemaniaParser#variavelSimples.
+    def visitVariavelSimples(self, ctx:TimemaniaParser.VariavelSimplesContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by TimemaniaParser#funcaoProcedimento.
     def visitFuncaoProcedimento(self, ctx:TimemaniaParser.FuncaoProcedimentoContext):
         return self.visitChildren(ctx)

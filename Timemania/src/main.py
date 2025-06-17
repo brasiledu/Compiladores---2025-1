@@ -6,34 +6,40 @@ from TimemaniaParser import TimemaniaParser
 from TimemaniaParserVisitor import TimemaniaParserVisitor
 from semantic_analyzer import SemanticAnalyzer 
 from tree_to_png import TreeToPNG, create_simplified_tree_png
+from tac_visitor import TACVisitor
 
 def main():
     # Verificar argumentos
     if len(sys.argv) < 2 or len(sys.argv) > 3:
-        print("🌳 Compilador Timemania - Gerador de Árvore Sintática")
+        print("🏗️ Compilador Timemania - Análise Completa")
         print("=" * 50)
         print("Uso:")
         print("  python main.py <arquivo.tm>                    # Análise normal")
         print("  python main.py <arquivo.tm> --png              # Gerar PNG completo")
         print("  python main.py <arquivo.tm> --png-simples      # Gerar PNG simplificado")
+        print("  python main.py <arquivo.tm> --gerar-tac        # Gerar código TAC")
         print("")
         print("Exemplos:")
         print("  python main.py ../tests/exemplos/teste_simples.tm")
         print("  python main.py ../tests/exemplos/teste_simples.tm --png-simples")
+        print("  python main.py ../tests/exemplos/teste_simples.tm --gerar-tac")
         print("")
         print("📋 Para mais informações, veja: ARVORE_PNG_GUIA.md")
         return
     
     generate_png = False
     generate_simple = False
+    generate_tac = False
     
     if len(sys.argv) == 3:
         if sys.argv[2] == "--png":
             generate_png = True
         elif sys.argv[2] == "--png-simples":
             generate_simple = True
+        elif sys.argv[2] == "--gerar-tac":
+            generate_tac = True
         else:
-            print("Opção inválida. Use --png ou --png-simples")
+            print("Opção inválida. Use --png, --png-simples ou --gerar-tac")
             return
     
     arquivo = sys.argv[1]
@@ -66,8 +72,8 @@ def main():
         print(f"Erro na análise sintática: {e}")
         return
 
-    # Exibir a árvore sintática (apenas se não estiver gerando PNG)
-    if not generate_png and not generate_simple:
+    # Exibir a árvore sintática (apenas se não estiver gerando PNG ou TAC)
+    if not generate_png and not generate_simple and not generate_tac:
         print(tree.toStringTree(recog=parser))
 
     # Gerar PNG se solicitado
@@ -92,10 +98,42 @@ def main():
 
     # Se houver erros semânticos, interromper a execução
     if analisador.errors:
-        print("Execução interrompida devido a erros semânticos.")
+        print("❌ Execução interrompida devido a erros semânticos.")
         return
     else:
         print("✅ Análise semântica concluída sem erros!")
+
+    # GERAÇÃO DE CÓDIGO TAC
+    if generate_tac:
+        print("\n⚡ Iniciando geração de código TAC...")
+        
+        try:
+            # Criar visitador TAC
+            tac_visitor = TACVisitor()
+            
+            # Visitar a árvore e gerar TAC
+            tac_visitor.visitPrograma(tree)
+            
+            # Nome do arquivo TAC
+            base_name = os.path.splitext(os.path.basename(arquivo))[0]
+            tac_filename = f"{base_name}.tac"
+            
+            # Salvar código TAC em arquivo
+            tac_visitor.save_tac_to_file(tac_filename)
+            
+            print(f"✅ Código TAC gerado em: {tac_filename}")
+            
+            # Mostrar o código TAC gerado
+            print("\n📋 Código TAC gerado:")
+            print("=" * 40)
+            print(tac_visitor.get_tac_code())
+            print("=" * 40)
+            
+        except Exception as e:
+            print(f"❌ Erro na geração de código TAC: {e}")
+            import traceback
+            traceback.print_exc()
+            return
 
 if __name__ == "__main__":
     main()

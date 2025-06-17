@@ -1,4 +1,4 @@
-# Generated from TimemaniaParser.g4 by ANTLR 4.13.1
+# Generated from TimemaniaParser.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -288,7 +288,7 @@ class TimemaniaParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.13.1")
+        self.checkVersion("4.13.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -335,6 +335,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitPrograma" ):
                 listener.exitPrograma(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrograma" ):
+                return visitor.visitPrograma(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -422,6 +428,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitDeclaracao" ):
                 listener.exitDeclaracao(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaracao" ):
+                return visitor.visitDeclaracao(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -504,6 +516,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitConstante" ):
                 listener.exitConstante(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitConstante" ):
+                return visitor.visitConstante(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -566,6 +584,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitTipagem" ):
                 listener.exitTipagem(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipagem" ):
+                return visitor.visitTipagem(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -619,6 +643,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTipoDefinicao" ):
                 listener.exitTipoDefinicao(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipoDefinicao" ):
+                return visitor.visitTipoDefinicao(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -683,6 +713,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitTipoSimples" ):
                 listener.exitTipoSimples(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipoSimples" ):
+                return visitor.visitTipoSimples(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -734,6 +770,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTipoEstruturado" ):
                 listener.exitTipoEstruturado(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipoEstruturado" ):
+                return visitor.visitTipoEstruturado(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -817,6 +859,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitRegistroTipo" ):
                 listener.exitRegistroTipo(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRegistroTipo" ):
+                return visitor.visitRegistroTipo(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -896,6 +944,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitVetorTipo" ):
                 listener.exitVetorTipo(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVetorTipo" ):
+                return visitor.visitVetorTipo(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -969,6 +1023,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitVariavel" ):
                 listener.exitVariavel(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariavel" ):
+                return visitor.visitVariavel(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1038,6 +1098,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitVariavelSimples" ):
                 listener.exitVariavelSimples(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariavelSimples" ):
+                return visitor.visitVariavelSimples(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1087,6 +1153,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFuncaoProcedimento" ):
                 listener.exitFuncaoProcedimento(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncaoProcedimento" ):
+                return visitor.visitFuncaoProcedimento(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1178,6 +1250,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFuncao" ):
                 listener.exitFuncao(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncao" ):
+                return visitor.visitFuncao(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1283,6 +1361,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitProcedimento" ):
                 listener.exitProcedimento(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProcedimento" ):
+                return visitor.visitProcedimento(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1377,6 +1461,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitParametro" ):
                 listener.exitParametro(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParametro" ):
+                return visitor.visitParametro(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1446,6 +1536,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitRetorno" ):
                 listener.exitRetorno(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRetorno" ):
+                return visitor.visitRetorno(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1510,6 +1606,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitComando" ):
                 listener.exitComando(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComando" ):
+                return visitor.visitComando(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1595,6 +1697,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitAtribuicao" ):
                 listener.exitAtribuicao(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAtribuicao" ):
+                return visitor.visitAtribuicao(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1668,6 +1776,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFutebol" ):
                 listener.exitFutebol(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFutebol" ):
+                return visitor.visitFutebol(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1797,6 +1911,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitIo" ):
                 listener.exitIo(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIo" ):
+                return visitor.visitIo(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1935,6 +2055,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitControle" ):
                 listener.exitControle(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitControle" ):
+                return visitor.visitControle(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2066,6 +2192,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitBloco" ):
                 listener.exitBloco(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBloco" ):
+                return visitor.visitBloco(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2141,6 +2273,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitChamadaFuncao" ):
                 listener.exitChamadaFuncao(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitChamadaFuncao" ):
+                return visitor.visitChamadaFuncao(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2212,6 +2350,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitExpressaoGeral" ):
                 listener.exitExpressaoGeral(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpressaoGeral" ):
+                return visitor.visitExpressaoGeral(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2279,6 +2423,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitExpressao" ):
                 listener.exitExpressao(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpressao" ):
+                return visitor.visitExpressao(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2353,6 +2503,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitConcatenacao" ):
                 listener.exitConcatenacao(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitConcatenacao" ):
+                return visitor.visitConcatenacao(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2430,6 +2586,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTermo" ):
                 listener.exitTermo(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTermo" ):
+                return visitor.visitTermo(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2545,6 +2707,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitArrayOp" ):
                 listener.exitArrayOp(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArrayOp" ):
+                return visitor.visitArrayOp(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2612,6 +2780,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitCondicao" ):
                 listener.exitCondicao(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicao" ):
+                return visitor.visitCondicao(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2662,6 +2836,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCondicaoOr" ):
                 listener.exitCondicaoOr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicaoOr" ):
+                return visitor.visitCondicaoOr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2727,6 +2907,12 @@ class TimemaniaParser ( Parser ):
             if hasattr( listener, "exitCondicaoAnd" ):
                 listener.exitCondicaoAnd(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicaoAnd" ):
+                return visitor.visitCondicaoAnd(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2788,6 +2974,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCondicaoUnary" ):
                 listener.exitCondicaoUnary(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicaoUnary" ):
+                return visitor.visitCondicaoUnary(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2861,6 +3053,12 @@ class TimemaniaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCondicaoAtom" ):
                 listener.exitCondicaoAtom(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicaoAtom" ):
+                return visitor.visitCondicaoAtom(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
