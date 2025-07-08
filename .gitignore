@@ -19,3 +19,41 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Arquivos temporários ou de backup
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Diretórios de build ou binários
+build/
+dist/
+bin/
+
+# Configurações locais do editor/IDE
+.vscode/
+.idea/
+
+# Arquivos específicos do projeto Timemania
+*.tmc
+*.tmo
+
+# Arquivos gerados pelo compilador (opcionais - podem ser removidos para demo)
+# *.tac
+# *.ll
+# triangulos
+# triangulo_pascal  
+# demo_rapida
+
+# Arquivos ANTLR gerados
+.antlr/
+*.interp
+*.tokens
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Imagens geradas (opcional)
+src/images/*.png

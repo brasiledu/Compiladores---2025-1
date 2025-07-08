@@ -17,7 +17,7 @@ start
     leia(c);
     
     // Verifica se os valores são positivos
-    se (a <= 0 || b <= 0 || c <= 0) entao {
+    se (a <= 0 ou b <= 0 ou c <= 0) entao {
         escreva("ERRO: Todos os lados devem ser positivos!");
     } senao {
         // Verifica se os lados formam um triangulo válido

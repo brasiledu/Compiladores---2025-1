@@ -8,7 +8,7 @@ import os
 try:
     from graphviz import Digraph
 except ImportError:
-    print("❌ Erro: graphviz não está instalado. Execute: pip install graphviz")
+    print(" Erro: graphviz não está instalado. Execute: pip install graphviz")
     exit(1)
 
 
